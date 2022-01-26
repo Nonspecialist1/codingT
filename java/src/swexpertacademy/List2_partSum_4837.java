@@ -3,11 +3,10 @@ package swexpertacademy;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-public class List2_partSum {
+public class List2_partSum_4837 {
     // 전체 집합
     static int[] A = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
     static boolean[] used;
