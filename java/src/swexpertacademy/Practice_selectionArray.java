@@ -1,4 +1,4 @@
-package swexpertacademy.array2;
+package swexpertacademy;
 
 public class Practice_selectionArray {
     static int[][] arr = {
