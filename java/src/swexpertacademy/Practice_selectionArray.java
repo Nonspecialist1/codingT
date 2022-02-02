@@ -8,58 +8,62 @@ public class Practice_selectionArray {
             {15, 4, 16, 5, 6},
             {12, 13, 22, 23, 14}
     };
-    static int min = 100;
-    static int row = 0;
-    static int col = 0;
 
-    public static void main(String[] args) {
-        arr = selectionSort(arr, row, col);
+    static boolean isWall(int newRow, int newCol) {
+        if(newRow < 0 || newRow >= 5 || newCol < 0 || newCol >= 5) return true;
+        return false;
+    }
+
+    static int selMin(){
+        int minRow = 0, minCol = 0;
+        int min = arr[0][0];
 
         for(int i=0; i<5; i++) {
-            for (int j = 0; j < 5; j++) {
-                System.out.println(arr[i][j]);
-            }
-        }
-    }
-
-
-    static boolean[][] check = new boolean[5][5];
-
-    static int[][] selectionSort(int[][] arr, int row, int col){
-        while(row < 5 && col < 5){
-            min = arr[row][col];
-            for(int i=row; i<5; i++) {
-                int iCol = 0;
-                if(i == row) { iCol = col; }
-                for (int j=iCol; j < 5; j++) {
-                    if(arr[i][j] < min){
-                        min = arr[i][j];
-                        arr[i][j] = arr[row][col];
-                        arr[row][col] = min;
-                    }
+            for(int j=0; j<5; j++) {
+                if(min > arr[i][j]) {
+                    min = arr[i][j];
+                    minRow = i; minCol = j;
                 }
             }
-            check[row][col] = true;
-
-            // 열이 벽을 만났을 때 밑으로 꺽기
-            if((col+1 <5 && check[row][col+1] == true) || col+1 > 5){
-                if(row != 4){ row++; }
-            }
-            // 행이 벽을 만났을 때 좌로 꺽기
-            if((row+1 < 5 && check[row+1][col] == true) || row+1 > 5){
-                if(col != 0){ col--; }
-            }
-            // 열이 벽을 만났을 때 위로 꺽기
-            if((col-1 > 0 && check[row][col-1] == true) || col-1 < 0) {
-                if(row != 0){ row--; }
-            }
-            // 행열이 벽을 만나지 않았을 때
-            else  {
-                if(col != 4){ col++; }
-            }
-            selectionSort(arr, row, col);
         }
-        return arr;
+        arr[minRow][minCol] = 26;
+        return min;
     }
+
+    public static void main(String[] args) {
+        int[][] sortedArr = new int[5][5];
+        int curMin = -1;
+        int row, col;
+        int newRow = 0, newCol = 0;
+
+        int[] dx = { 1, 0, -1, 0 };
+        int[] dy = { 0, 1, 0, -1 };
+        int dirStatus = 0;
+
+        for(int i=0; i<25; i++){
+            curMin = selMin();
+            row = newRow;
+            col = newCol;
+            sortedArr[newCol][newRow] = curMin;
+
+            newRow = row + dx[dirStatus];
+            newCol = col + dy[dirStatus];
+            if(isWall(newRow, newCol) || sortedArr[newCol][newRow] != 0){
+                dirStatus = (dirStatus + 1) % 4;
+                newRow = row + dx[dirStatus];
+                newCol = col + dy[dirStatus];
+            }
+        }
+
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+                System.out.printf("%4d", sortedArr[i][j]);
+            System.out.println();
+        }
+
+    }
+
+
 
 }

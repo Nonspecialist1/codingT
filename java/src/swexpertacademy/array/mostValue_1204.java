@@ -6,35 +6,25 @@ import java.util.Scanner;
 public class mostValue_1204 {
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
+        // 테이스 case 개수
         int Tcase = sc.nextInt();
         for(int T=1; T<=Tcase; T++){
             int caseNum = sc.nextInt();
-            int[] arr = new int[1000];
+            // 학생들의 점수 0점 ~ 100점
+            int[] arr = new int[101];
+            // 1000명의 학생들의 점수, 빈도를 ++
             for(int i=0; i<1000; i++){
-                arr[i] = sc.nextInt();
+                arr[sc.nextInt()]++;
             }
-            int cnt = 0;
-            int idx = 0;
-            for(int i=0; i<1000; i++){
-                int icnt = 0;
-                for(int j=i+1; j<1000; j++){
-                    if(arr[i] == arr[j]){
-                        icnt++;
-                    }
-                    if(icnt > cnt){
-                        cnt = icnt;
-                        idx = i;
-                    }else if(icnt == cnt){
-                        if(arr[i] > arr[idx]){
-                            idx = i;
-                        }
-                    }
+            int maxIdx = 0;
+            // 최빈 점수 찾기
+            for(int i=1; i<101; i++){
+                if(arr[maxIdx] <= arr[i]){
+                    maxIdx = i;
                 }
             }
-            int ans = arr[idx];
-            System.out.printf("#%d %d\n", caseNum, ans);
+            System.out.printf("#%d %d\n", caseNum, maxIdx);
         }
+        sc.close();
     }
-
-
 }
