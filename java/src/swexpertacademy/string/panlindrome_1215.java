@@ -2,7 +2,7 @@ package swexpertacademy.string;
 
 import java.util.Scanner;
 
-public class panlindrome_1213 {
+public class panlindrome_1215 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 

@@ -1,5 +1,7 @@
 package beckjoon.array;
 
+import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Array2_2628 {
@@ -7,59 +9,42 @@ public class Array2_2628 {
         Scanner sc = new Scanner(System.in);
         int row = sc.nextInt();
         int col = sc.nextInt();
-        int[][] arr = new int[col][row];
+        LinkedList<Integer> listRow = new LinkedList<>();
+        LinkedList<Integer> listCol = new LinkedList<>();
+        listRow.add(row);
+        listRow.add(0);
+        listCol.add(col);
+        listCol.add(0);
 
         int T = sc.nextInt(); // 자르는 횟수
-        int max = 0;
-        int cnt = 0;
+
         while(T != 0){
-            cnt = 1;
             int dir = sc.nextInt(); // 자르는 방향
             int idx = sc.nextInt(); // 자르는 번호
             if(dir == 0){ // 가로로 자름 (col 에서 끊기)
-               for(int i=0; i<idx; i++){
-                   for(int j=0; j<arr.length; j++){
-                       if(arr[i][j] != 0){ arr[i][j] = cnt + 1; }
-                       else{ arr[i][j] = cnt; }
-                   }
-               }
-               cnt++;
+                listCol.add(idx);
             }
             else { // 세로로 자름 (row 에서 끊기)
-                for(int i=0; i<col; i++){
-                    for(int j=0; j<idx; j++){
-                        if(arr[i][j] != 0){ arr[i][j] = cnt + 1; }
-                        else{ arr[i][j] = cnt; }
-                    }
-                }
-                cnt++;
+                listRow.add(idx);
             }
             T--;
         }
-        int zero = 0;
-        int fir = 0;
-        int sec = 0;
-        int third = 0;
-        int forth = 0;
-        int fif = 0;
-        int six = 0;
-        for(int i=0; i<col; i++){
-            for(int j=0; j<arr.length; j++){
-                if(arr[i][j] == 0){ zero++; }
-                if(arr[i][j] == 1){ fir++; }
-                if(arr[i][j] == 2){ sec++; }
-                if(arr[i][j] == 3){ third++; }
-                if(arr[i][j] == 4){ forth++; }
-                if(arr[i][j] == 5){ fif++; }
-                if(arr[i][j] == cnt){ six++; }
-            }
+        // 오름차순 정렬
+        listRow.sort(Comparator.naturalOrder());
+        listCol.sort(Comparator.naturalOrder());
+
+        int maxCol = 0;
+        for(int i=listCol.size()-1; i>0; i--){ // 가장 긴 세로 길이 구하기
+            int max = listCol.get(i) - listCol.get(i-1);
+            if(max > maxCol){ maxCol = max; }
         }
-        int oneMax = Math.max(zero, fir);
-        int twoMax = Math.max(sec, third);
-        int thrMax = Math.max(forth, fif);
-        int oneTwoMax = Math.max(oneMax, twoMax);
-        int thirForMax = Math.max(thrMax, six);
-        max = Math.max(oneTwoMax, thirForMax);
-        System.out.println(max);
+
+        int maxRow = 0;
+        for(int i=listRow.size()-1; i>0; i--){ // 가장 긴 가로 길이 구하기
+            int max = listRow.get(i) - listRow.get(i-1);
+            if(max > maxRow){ maxRow = max; }
+        }
+
+        System.out.println(maxCol * maxRow);
     }
 }

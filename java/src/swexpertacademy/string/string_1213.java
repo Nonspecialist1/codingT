@@ -16,7 +16,6 @@ public class string_1213 {
                 cnt = 0;
             }
 
-            prob.length();
             String newProb = prob.replace(find, " /");
             String[] arr = newProb.split(" /");
             int ans = arr.length + cnt;
