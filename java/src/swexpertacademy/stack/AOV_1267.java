@@ -7,7 +7,7 @@ public class AOV_1267 {
     static int[][] arr;
     static boolean[] visited;
     static StringBuilder sb;
-    // 설명은 어렵지만 구현은 쉬운 것 : 진입차수를 거꾸로 배열에 저장하고 마지막 노드에서 저장 (재귀, 난 이게 더 어려워)
+    // 설명은 어렵지만 구현은 쉬운 것 : 진입차수를 거꾸로 배열에 저장하고 마지막 노드에서 저장 (DFS 재귀, 난 이게 더 어려워)
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         for(int T=1; T<=10; T++){

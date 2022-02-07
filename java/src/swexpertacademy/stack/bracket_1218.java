@@ -15,9 +15,7 @@ public class bracket_1218 {
             int ans = 1;
 
             for(int i=0; i<caseNum; i++){
-                if(arr[i] == '(' || arr[i] == '{' || arr[i] == '[' || arr[i] == '<'){
-                    st.push(arr[i]);
-                }
+                if(arr[i] == '(' || arr[i] == '{' || arr[i] == '[' || arr[i] == '<'){ st.push(arr[i]); }
                 else{
                     char c = st.pop();
                     if(c == '('){ c = ')'; }
