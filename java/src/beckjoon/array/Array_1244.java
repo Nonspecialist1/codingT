@@ -7,14 +7,17 @@ public class Array_1244 {
         Scanner sc = new Scanner(System.in);
         int size = sc.nextInt();
         boolean[] arr = new boolean[size+1];
+
         for(int i=1; i<arr.length; i++){
             int k = sc.nextInt();
             arr[i] = (k == 1) ? true : false;
         }
+
         int T = sc.nextInt();
         while(T != 0){
             int gender = sc.nextInt();
             int idx = sc.nextInt();
+
             if(gender == 1){
                 for(int i=1; i<arr.length; i++){
                     if(i % idx == 0){
@@ -27,16 +30,16 @@ public class Array_1244 {
                 if(arr[idx]){ arr[idx] = false; }
                 else{ arr[idx] = true; }
 
-                int breadth = 0;
+                int breadth = 1;
                 while(true){
-                    if(idx-breadth-1 >= 1 && idx+breadth+1 < arr.length && arr[idx-breadth-1] == arr[idx+breadth+1]){
-                        if(arr[idx-breadth-1]){
-                            arr[idx-breadth-1] = false;
-                            arr[idx+breadth+1] = false;
+                    if(idx-breadth >= 1 && idx+breadth < arr.length && arr[idx-breadth] == arr[idx+breadth]){
+                        if(arr[idx-breadth]){
+                            arr[idx-breadth] = false;
+                            arr[idx+breadth] = false;
                         }
                         else{
-                            arr[idx-breadth-1] = true;
-                            arr[idx+breadth+1] = true;
+                            arr[idx-breadth] = true;
+                            arr[idx+breadth] = true;
                         }
                         breadth++;
                     }
@@ -45,6 +48,7 @@ public class Array_1244 {
             }
             T--;
         }
+
         int cnt = 0;
         for(int i=1; i<arr.length; i++){
             if(cnt == 20){
