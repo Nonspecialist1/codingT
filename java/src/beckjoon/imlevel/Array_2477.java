@@ -1,4 +1,4 @@
-package beckjoon.array;
+package beckjoon.imlevel;
 
 import java.util.LinkedList;
 import java.util.Scanner;

@@ -1,48 +1,39 @@
 package swexpertacademy.queue;
 
-import java.util.*;
-
 public class BFS_practice {
+    public static int G[][] = {
+            { 0, 0, 0 },
+            { 2, 3, 0 }, // 정점 1의 인접정점
+            { 1, 4, 5 }, // 정점 2의 인접정점
+            { 1, 7, 0 }, // 정점 3의 인접정점
+            { 2, 6, 0 }, // 정점 4의 인접정점
+            { 2, 6, 0 }, // 정점 5의 인접정점
+            { 4, 5, 7 }, // 정점 6의 인접정점
+            { 3, 6, 0 } };  // 정점 7의 인접정점
     static boolean[] visited = new boolean[8];
-    static int[][] arr = new int[8][8];
-    static StringBuilder sb = new StringBuilder();
+    static int[] q = new int[10];
+    static int f, r;
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        visited = new boolean[8];
-        arr = new int[8][8];
-        sb = new StringBuilder();
-        for(int i=0; i<8; i++){
-                int a = sc.nextInt();
-                int b = sc.nextInt();
-                arr[a][b]++;
-                arr[b][0]++;
-        }
-        int start = 0;
-        for(int i=1; i<8; i++){
-            if(arr[i][0] == 0){ start = i; break; }
-        }
-        BFS(arr, start);
-        System.out.println(sb);
+        f = r = -1;
+        BFS(1);
     }
-    static void BFS(int[][] arr, int v){
-        Queue<Integer> q = new LinkedList<>();
-        q.add(v);
+
+    static void BFS(int v) {
+        System.out.printf("%d", q[++r] = v);
         visited[v] = true;
-        sb.append(v);
-        while(!q.isEmpty()){
-            int t = q.poll();
-            for(int i=1; i<8; i++){
-                if(arr[t][i] != 0)
+
+        while(f != r){
+            v = q[++f];
+            for(int i=0; i<3; i++){
+                if(G[v][i] > 0 && !visited[G[v][i]])
                 {
-                    if(!visited[i]){
-                        q.add(i);
-                        visited[i] = true;
-                        sb.append(" - " + i);
-                    }
+                    System.out.printf("%d", q[++r] = G[v][i]);
+                    visited[G[v][i]] = true;
                 }
             }
         }
     }
+
 
 }

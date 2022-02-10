@@ -1,33 +1,54 @@
 package swexpertacademy.queue;
 
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
 
 public class MyChu {
+    static int q[] = new int[100];
+    static int studcan[] = new int[20];
+    static int f = -1, r = -1, candies = 20;
+
     public static void main(String[] args) throws IOException {
-        Scanner sc = new Scanner(System.in);
-        Queue<Integer> q = new LinkedList<>();
-        int amount = 20;
-        int[][] arr = new int[10][1];
-        int i = 1;
-        int idx = 0;
-        while(amount > 0){
-            q.add(i);
-            for(int j=0; j<q.size(); j++){
-                idx = q.poll();
-                arr[idx][0]++; // 사람 번호 , 받은 사탕 수
-                amount--;
-                if(amount == 0){ i = idx; break; }
-                q.add(idx);
-            }
-            i++;
-            sc.next();
-            System.out.println("큐에 있는 사람 수 : " + q.size());
-            System.out.println("현재 일번이 받은 사탕 수 : " + arr[1][0]);
-            System.out.println("현재까지 나눠준 사탕 수 : " + (20 - amount));
-            System.out.println("마지막 사탕을 받은사람 : " + i);
+        int stNo = 1, incomming_sn = 2;
+        for(int i=0; i<20; i++){
+            studcan[i] = 1;
         }
+        q[++r] = stNo;
+        System.out.printf("===>%d번 학생 : 줄을 선다.\n", stNo);
+
+        printQ();
+        stNo = q[++f];
+        System.out.printf("%d번 학생 : 줄에서 나와....\n", stNo);
+        printQ();
+
+        while(candies > 0){
+            candies -= studcan[stNo];
+            System.out.printf("%d번 학생 : 선생님한테 사탕 %d개를 받는다.\n", stNo, studcan[stNo]);
+            System.out.printf("=========== 남은 사탕 개수는 %d개\n\n", candies);
+            studcan[stNo]++;
+
+            if(candies <= 0){
+                System.out.println(stNo);
+                break;
+            }
+            q[++r] = stNo;
+            System.out.printf("%d번 학생 : 다시 줄을 선다.\n", stNo);
+            printQ();
+            System.out.printf("======>%d번 학생 줄을 선다.\n", incomming_sn);
+            q[++r] = incomming_sn++;
+            printQ();
+            stNo = q[++f];
+            System.out.printf("%d번 학생 : 줄에서 나와...\n", stNo);
+            printQ();
+        }
+
     }
+
+    static void printQ(){
+        System.out.printf("[");
+        for(int i=f+1; i<r+1; i++){
+            System.out.printf("%d -", q[i]);
+        }
+        System.out.printf("]\n\n");
+    }
+
 }
