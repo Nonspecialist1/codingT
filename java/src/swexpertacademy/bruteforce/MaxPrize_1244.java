@@ -7,6 +7,7 @@ public class MaxPrize_1244 {
     static int time;
     static int maxBoard;
     static String first;
+    static int bin;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -46,11 +47,13 @@ public class MaxPrize_1244 {
                 maxBoard = Integer.parseInt(sum);
             }
 
-            System.out.println("#"+T+" "+maxBoard);
+            System.out.println("#"+T+" "+maxBoard + "횟수 : " + bin);
         }
     }
 
     static int getMaxBoard(int idx, int cnt){
+        bin++;
+
         if(cnt == time){
             String sum = "";
             for(String s : board){ sum += s; }
