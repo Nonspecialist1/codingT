@@ -33,7 +33,7 @@ public class SquareRoom_1861 {
                     cnt = 1;
                     getMove(i, j);
                     if(cnt > maxCnt){ maxCnt = cnt; st = tempSt; }
-                    if(cnt == maxCnt && tempSt < st) st = tempSt;
+                    if(cnt == maxCnt && st > tempSt) st = tempSt;
                 }
             }
             System.out.printf("#%d %d %d\n", T, st, maxCnt);
