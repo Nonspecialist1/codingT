@@ -21,10 +21,7 @@ public class BackCal_1935 {
             char c = arr[i];
             double val = 0.0;
 
-            if(c > 64){
-                int idx = c;
-                st.push((double)value[idx-65]);
-            }
+            if(c > 64){ st.push((double)value[c-65]); }
             else {
                 double a = st.pop();
                 double b = st.pop();
