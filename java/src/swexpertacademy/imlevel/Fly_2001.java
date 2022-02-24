@@ -6,8 +6,8 @@ public class Fly_2001 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        int Tcase = sc.nextInt();
-        for(int T=1; T<=Tcase; T++){
+        int T_case = sc.nextInt();
+        for(int T=1; T<=T_case; T++){
             int N = sc.nextInt();
             int M = sc.nextInt();
 
@@ -18,20 +18,19 @@ public class Fly_2001 {
                 }
             }
 
+            int D = N-M;
             int ans = 0;
-            int val = 0;
-            int cnt = M;
-            for(int i=0; i<N; i++){
-                cnt = 0;
-                for(int j=0; j<N; j++){
-                    val += board[i][j];
-                    cnt++;
-                    if(cnt == M) continue;
+            for(int i=0; i<=D; i++){
+                for(int j=0; j<=D; j++){
+                    int temp = 0;
+                    for(int s=i; s<M+i; s++){
+                        for (int k=j; k<M+j; k++) {
+                            temp += board[s][k];
+                        }
+                    }
+                    if(temp > ans) ans = temp;
                 }
             }
-
-
-
             System.out.printf("#%d %d\n", T, ans);
         }
     }
