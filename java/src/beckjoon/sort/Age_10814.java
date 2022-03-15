@@ -7,23 +7,24 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.StringTokenizer;
 
-public class XY_11650 {
+public class Age_10814 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
-        int[][] arr = new int[N][2];
+        String[][] arr = new String[N][2];
 
         for(int i=0; i<N; i++){
             StringTokenizer st = new StringTokenizer(br.readLine());
-            arr[i][0] = Integer.parseInt(st.nextToken());
-            arr[i][1] = Integer.parseInt(st.nextToken());
+            arr[i][0] = st.nextToken();
+            arr[i][1] = st.nextToken();
         }
 
-        Arrays.sort(arr, new Comparator<int[]>() {
+        Arrays.sort(arr, new Comparator<String[]>() {
             @Override
-            public int compare(int[] o1, int[] o2) {
-                if(o1[1] == o2[1]){ return o1[0] - o2[0]; }
-                else { return o1[1] - o2[1]; }
+            public int compare(String[] o1, String[] o2) {
+                int age1 = Integer.valueOf(o1[0]);
+                int age2 = Integer.valueOf(o2[0]);
+                return age1 - age2;
             }
         });
 
