@@ -6,20 +6,51 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class LongSequence_11053 {
+    static int[] nums;
+    static int[] temps;
+    static int N;
+    static int M;
+    static StringBuilder sb;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-        int[] nums = new int[N];
-        int[] DP = new int[N+1];
-
         StringTokenizer st = new StringTokenizer(br.readLine());
-        for(int i=0; i<N; i++) nums[i] = Integer.parseInt(st.nextToken());
-        DP[1] = nums[0];
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
 
-        int cnt = 1;
-        for(int i=1; i<N; i++){
-            if(nums[i] > DP[cnt]) DP[++cnt] = nums[i];
+        nums = new int[N];
+        temps = new int[N];
+
+        for(int i=0; i<N; i++){
+            nums[i] = i+1;
         }
-        System.out.print(cnt);
+
+        sb = new StringBuilder();
+        perm(0);
+        System.out.print(sb);
+    }
+
+    static void perm(int r){
+        if(r == M){
+            StringBuilder tempSb = new StringBuilder();
+            tempSb.append(temps[0] + " ");
+            boolean flag = true;
+
+            for(int i=1; i<M; i++){
+                if(temps[i] < temps[i-1]){
+                    flag = false;
+                    break;
+                }
+                else tempSb.append(temps[i] + " ");
+            }
+            if(flag) sb.append(tempSb + "\n");
+            return;
+        }
+
+        for(int i=0; i<N; i++){
+            temps[r] = nums[i];
+            perm(r+1);
+        }
+
     }
 }
