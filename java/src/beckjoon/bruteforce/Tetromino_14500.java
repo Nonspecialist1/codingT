@@ -56,7 +56,7 @@ public class Tetromino_14500 {
     }
     // 상하좌우 4방 탐색
     static int[] dc = { -1, 1, 0, 0 };
-    static int[] dr = { 0, 0, -1, 1};
+    static int[] dr = { 0, 0, -1, 1 };
 
     static void solveFir(int col, int row, int depth, int sum){
         sum += PAPER[col][row];
