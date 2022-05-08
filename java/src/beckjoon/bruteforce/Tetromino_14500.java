@@ -26,29 +26,10 @@ public class Tetromino_14500 {
         }
         // 0,0 부터 시작
         for(int i=0; i<N; i++){
-            for(int j=0; j<M; j++){
-                // 4방 탐색
+            for(int j=0; j<M; j++){ // 4방 탐색
                 VISITED[i][j] = true;
-                solveFir(i, j,1, 0);
+                solveFir(i, j,1, PAPER[i][j]);
                 VISITED[i][j] = false;
-                // 3방 탐색
-                for(int start=0; start<4; start++){
-                    int sum = PAPER[i][j];
-                    int cnt = 0;
-
-                    for(int k=start; k<start+3; k++){
-                        int newCol = i + dc[k % 4];
-                        int newRow = j + dr[k % 4];
-
-                        if(checkWall(newCol, newRow)){
-                            cnt++;
-                            sum += PAPER[newCol][newRow];
-                        }
-                    }
-                    if(cnt == 3){
-                        if(sum > MAX) MAX = sum;
-                    }
-                }
             }
         }
 
@@ -59,7 +40,6 @@ public class Tetromino_14500 {
     static int[] dr = { 0, 0, -1, 1 };
 
     static void solveFir(int col, int row, int depth, int sum){
-        sum += PAPER[col][row];
         // 4개를 채웠다면 return
         if(depth == 4){
             if(sum > MAX) MAX = sum;
@@ -70,9 +50,14 @@ public class Tetromino_14500 {
             int newCol = col + dc[i];
             int newRow = row + dr[i];
 
-            if(checkWall(newCol, newRow) && !VISITED[newCol][newRow]){ // 벽체크, 방문체크
+            if(!checkWall(newCol, newRow) && !VISITED[newCol][newRow]){ // 벽체크, 방문체크
                 VISITED[newCol][newRow] = true;
-                solveFir(newCol, newRow, depth+1, sum);
+
+                if(depth == 2) { // 2번째일 때, ㅏ,ㅓ,ㅗ,ㅜ 모양 만들기
+                    solveFir(col, row, depth+1, sum + PAPER[newCol][newRow]);
+                }
+                solveFir(newCol, newRow, depth+1, sum + PAPER[newCol][newRow]);
+
                 VISITED[newCol][newRow] = false;
             }
         }
@@ -81,9 +66,9 @@ public class Tetromino_14500 {
     // 벽체크
     static boolean checkWall(int newCol, int newRow) {
         if(newCol < 0 || newCol >= N || newRow < 0 || newRow >= M){
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
 }
