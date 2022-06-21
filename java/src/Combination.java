@@ -1,11 +1,10 @@
 public class Combination {
     static int[] arr = { 1, 2, 3, 4 };
-    static int[] temp = new int[4];
-    static boolean[] visited = new boolean[5];
-
+    // nCr 조합
     static int N = 4, R = 2;
-    static int cnt_r = 1;
+    static int[] temp = new int[R];
 
+    static int cnt_r = 1;
 
     public static void main(String[] args) {
         comb(N, R);

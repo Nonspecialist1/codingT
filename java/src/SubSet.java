@@ -1,14 +1,15 @@
 public class SubSet {
-    static int[] arr = { 1, 2, 3, 4 };
-    static boolean[] visited = new boolean[4];
-
+    static int[] arr = { 10, 20, 3, 4 };
+    // 부분집합의 길이
     static int N = 4;
+    static boolean[] visited = new boolean[N];
+
     static int cnt_r = 1;
 
     public static void main(String[] args) {
         // 재귀적 구현
         powerSet(0);
-        // 비트구현은 못함 ㅜㅜ
+        // 비트 마스크 구현은 못함 ㅜㅜ
     }
 
     static void powerSet(int idx){
