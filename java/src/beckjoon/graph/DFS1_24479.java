@@ -1,16 +1,16 @@
-package beckjoon.dfs;
+package beckjoon.graph;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class DFS_BFS_1260 {
+public class DFS1_24479 {
     static ArrayList<Integer>[] Graph;
-    static boolean[] Visit;
+    static int[] Visit;
+    static int st = 1;
 
-    static int N, M, Start;
-    static StringBuilder sb = new StringBuilder();
+    static int N, M, R;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -18,10 +18,10 @@ public class DFS_BFS_1260 {
 
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
-        Start = Integer.parseInt(st.nextToken());
+        R = Integer.parseInt(st.nextToken());
 
         Graph = new ArrayList[N+1];
-        Visit = new boolean[N+1];
+        Visit = new int[N+1];
 
         // Arraylist 배열 초기화
         for(int i=1; i<N+1; i++){
@@ -36,50 +36,26 @@ public class DFS_BFS_1260 {
             Graph[b].add(a);
         }
 
-        for(int i=1; i<N+1; i++){ // 오름차순 정렬
+        for(int i=1; i<N+1; i++){ // 내림차순 정렬
             Collections.sort(Graph[i]);
+            Collections.reverse(Graph[i]);
         }
 
         // DFS
-        DFS(Start);
-        sb.append("\n");
-        // 값 초기화
-        Visit = new boolean[N+1];
-        // BFS
-        BFS();
-        // 값출력
-        System.out.println(sb);
+        DFS(R);
+        for(int i=1; i<N+1; i++){
+            System.out.println(Visit[i]);
+        }
     }
 
     static void DFS(int start){
-        if(Visit[start]) return;
+        if(Visit[start] != 0) return;
 
-        Visit[start] = true;
-        sb.append(start + " ");
+        Visit[start] = st++;
 
         for(int i : Graph[start]){
-            if(!Visit[i]){ DFS(i); }
+            if(Visit[i] == 0){ DFS(i); }
         }
     }
-
-    static void BFS(){
-        Queue<Integer> que = new LinkedList<>();
-        que.add(Start);
-        Visit[Start] = true;
-
-        while (!que.isEmpty()){
-            int x = que.poll();
-            sb.append(x + " ");
-
-            for(int i : Graph[x]){
-                if(!Visit[i]){
-                    Visit[i] = true;
-                    que.add(i);
-                }
-            }
-        }
-    }
-
-
 
 }

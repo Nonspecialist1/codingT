@@ -1,16 +1,16 @@
-package beckjoon.dfs;
+package beckjoon.graph;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 
-public class BFS1_24444 {
+public class Connected_Comp_11724 {
     static ArrayList<Integer>[] Graph;
-    static int[] Visit;
-    static int st = 1;
+    static boolean[] Visit;
 
-    static int N, M, R;
+    static int N, M, Cnt = 1;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -18,17 +18,16 @@ public class BFS1_24444 {
 
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
-        R = Integer.parseInt(st.nextToken());
 
         Graph = new ArrayList[N+1];
-        Visit = new int[N+1];
+        Visit = new boolean[N+1];
 
         // Arraylist 배열 초기화
         for(int i=1; i<N+1; i++){
             Graph[i] = new ArrayList<>();
         }
 
-        for(int i=0; i<M; i++){ // 양방향 그래스
+        for(int i=0; i<M; i++){ // 양방향 그래프
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
@@ -36,32 +35,33 @@ public class BFS1_24444 {
             Graph[b].add(a);
         }
 
-        for(int i=1; i<N+1; i++){ // 내림차순 정렬
-            Collections.sort(Graph[i]);
-            Collections.reverse(Graph[i]);
-        }
-
         // DFS
-        BFS(R);
-        for(int i=1; i<N+1; i++){
-            System.out.println(Visit[i]);
-        }
+        DFS(1);
+        sumCnt();
+        System.out.println(Cnt);
     }
 
-    static void BFS(int start){
-        Queue<Integer> list = new LinkedList<>();
-        list.add(start);
+    private static void sumCnt() {
+        boolean flag = false;
 
-        while(!list.isEmpty()){
-            int next = list.poll();
-
-            if(Visit[next] == 0){
-                Visit[next] = st++;
-
-                for(int i : Graph[next]){
-                    list.add(i);
-                }
+        for(int i=1; i<N+1; i++){
+            if(!Visit[i]){ // 방문 하지 않은 점이 있으면 다시 dfs 시작
+                Cnt++; DFS(i); flag = true;
+                break;
             }
+        }
+
+        if(flag) sumCnt();
+        else return;
+    }
+
+    static void DFS(int start){
+        if(Visit[start]) return;
+
+        Visit[start] = true;
+
+        for(int i : Graph[start]){
+            if(!Visit[i]){ DFS(i); }
         }
     }
 
