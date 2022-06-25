@@ -25,10 +25,10 @@ public class CandyGame_3085 {
         // 행검사
         checkRow();
         // 열검사
-        if(Max != N) checkCol();
+        checkCol();
         // 가장 긴 공통행렬 찾기
-        if(Max != N) solve();
-        if(Max != N) System.out.println(Max);
+        solve();
+        System.out.println(Max);
     }
     // 이동 방향
     static int[] dy = {-1, 1, 0, 0};
@@ -44,10 +44,7 @@ public class CandyGame_3085 {
                     int newX = j + dx[d];
                     if(!checkWall(newY, newX) && !Visit[newY][newX] && Candy[i][j] != Candy[newY][newX]){
                         swap(i, j, newY, newX);
-                        checkRow();
-                        if(Max == N) return;
-                        checkCol();
-                        if(Max == N) return;
+                        checkRow(); checkCol();
                         swap(i, j, newY, newX);
                     }
                 }
@@ -70,7 +67,8 @@ public class CandyGame_3085 {
                     max++;
                     if(max > Max) Max = max;
                     if(Max == N){
-                        System.out.println(Max); return;
+                        System.out.println(Max);
+                        System.exit(0);  // 바로종료
                     }
                 } else {
                     max = 1;
@@ -87,7 +85,8 @@ public class CandyGame_3085 {
                     max++;
                     if(max > Max) Max = max;
                     if(Max == N){
-                        System.out.println(Max); return;
+                        System.out.println(Max);
+                        System.exit(0); // 바로종료
                     }
                 } else {
                     max = 1;
