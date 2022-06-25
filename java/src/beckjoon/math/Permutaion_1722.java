@@ -6,79 +6,64 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Permutaion_1722 {
-    static int N;
-    static boolean[] visited;
-    static int T;
-    static int k;
-    static int[] ans;
-    static int[] temp;
-    static int idx;
-    static boolean flag;
-    static StringBuilder sb;
+    static int N, T, I = 0, Cnt = 0;
+    static boolean[] Visited;
+    static int[] Arr;
+    static String STR = "";
+    static boolean Flag = false;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         N = Integer.parseInt(br.readLine());
-        visited = new boolean[N+1];
-        ans = new int[N];
+        Visited = new boolean[N+1];
+        Arr = new int[N];
 
         StringTokenizer st = new StringTokenizer(br.readLine());
         T = Integer.parseInt(st.nextToken());
-        if(T == 1){ idx = Integer.parseInt(st.nextToken()); }
+        if(T == 1){
+            I = Integer.parseInt(st.nextToken());
+        }
         else if(T == 2)
         {
-            temp = new int[N];
-            for(int i=0; i<N; i++){ temp[i] = Integer.parseInt(st.nextToken()); }
+            for(int i=0; i<N; i++){ STR += st.nextToken(); }
         }
-
-        sb = new StringBuilder();
-        k = 1;
-        flag = false;
         perm(0);
-
-        System.out.println(sb);
     }
 
     static void perm(int r){
-        if(r == N) {
-            if(T == 1){
-                if(idx == k) {
-                    solve(k++);
-                    flag = true;
-                }
-                else k++;
-            }
-            else if(!flag) { solve(k++); }
-        }
-        else
-        {
-            for(int i=1; i<=N; i++){
-                if(!visited[i]){
-                    ans[r] = i;
-                    visited[i] = true;
-                    perm(r+1);
-                    visited[i] = false;
-                }
-                if(flag){
-                    break;
-                }
-            }
-        }
-    }
+        if(Flag) return;
 
-    static void solve(int k){
-        if(T == 1){
-            for(int i : ans){ sb.append(i + " "); }
-            return;
-        }
-        else if(T == 2){
-            flag = true;
+        if(r == N) { // 4개의 수가 모두 만들어 졌을 때
+            Cnt++;
+            String st = "";
+            String str = "";
 
             for(int i=0; i<N; i++){
-                if(temp[i] != ans[i]){ flag = false; break;}
+                st += Arr[i] + " ";
+                str += Arr[i];
             }
-            if(flag){ sb.append(k); }
+
+            if(I != 0 && Cnt == I) { // 1번 조건일 때
+                System.out.println(st);
+                Flag = true;
+            }
+            else if(STR.equals(str)){
+                System.out.println(Cnt);
+                Flag = true;
+            }
+            return;
+        }
+
+        for(int i=1; i<=N; i++){
+            if(Flag) return;
+            if(Visited[i]) continue;
+
+            Arr[r] = i;
+
+            Visited[i] = true;
+            perm(r+1);
+            Visited[i] = false;
         }
     }
 
