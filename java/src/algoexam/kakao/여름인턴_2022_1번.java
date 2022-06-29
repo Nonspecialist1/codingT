@@ -1,4 +1,4 @@
-package kakao;
+package algoexam.kakao;
 
 public class 여름인턴_2022_1번 {
     // 풀었음

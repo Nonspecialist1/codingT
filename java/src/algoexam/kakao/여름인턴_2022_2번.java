@@ -1,11 +1,11 @@
-package kakao;
+package algoexam.kakao;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class 여름인턴_2022_2번 {
-    // 시간초과 -> 배열 원소 수 많고 값도 10^9 까지로 큼
+    // 시간초과 -> 배열 원소 수 많고 값도 10^9 까지로 큼, 투 포인터로 가능
 
     public static void main(String[] args) {
         int[] q1 = {1, 1};
