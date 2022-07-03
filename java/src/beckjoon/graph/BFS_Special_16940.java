@@ -19,6 +19,13 @@ public class BFS_Special_16940 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
+        System.out.println(",r'\"7");
+        System.out.println("r`-_   ,'  ,/");
+        System.out.println("\\. \". L_r'");
+        System.out.println("`~\\/");
+        System.out.println("|");
+        System.out.println("|");
+
         N = Integer.parseInt(st.nextToken());
 
         Graph = new ArrayList[N+1];
