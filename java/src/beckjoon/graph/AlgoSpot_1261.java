@@ -6,22 +6,22 @@ import java.io.InputStreamReader;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-class Point implements Comparable<Point> {
-    int x, y, wall;
-
-    Point(int x, int y, int wall){
-        this.x = x;
-        this.y = y;
-        this.wall = wall;
-    }
-
-    @Override
-    public int compareTo(Point o) {
-        return this.wall - o.wall;
-    }
-}
-
 public class AlgoSpot_1261 {
+
+    static class Point implements Comparable<Point> {
+        int x, y, wall;
+
+        Point(int x, int y, int wall){
+            this.x = x;
+            this.y = y;
+            this.wall = wall;
+        }
+
+        @Override
+        public int compareTo(Point o) {
+            return this.wall - o.wall;
+        }
+    }
 
     static int N, M;
     static char[][] Maze;
