@@ -1,7 +1,7 @@
 public class Permutation {
     static int[] arr = { 10, 20, 3, 4 };
 
-    static int N = arr.length, R = 2;
+    static int N = arr.length, R = 4;
     static int[] temp = new int[R];
     static boolean[] visited = new boolean[N];
 

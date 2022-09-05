@@ -9,6 +9,8 @@ public class Combination {
     public static void main(String[] args) {
         comb(N, R);
 
+        String s = "시간";
+
         // 반복문 조합 4C2인 경우
         // 중복 조합의 경우 j=i 로 두번째 반복문 돌려주면 됨
 //        for(int i=0; i<N-1; i++){
