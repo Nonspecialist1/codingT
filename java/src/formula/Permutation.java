@@ -1,3 +1,5 @@
+package formula;
+
 public class Permutation {
     static int[] arr = { 10, 20, 3, 4 };
 

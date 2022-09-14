@@ -1,4 +1,4 @@
-package beckjoon.backtracking;
+package beckjoon.bruteforce.backtracking;
 
 import java.io.BufferedReader;
 import java.io.IOException;

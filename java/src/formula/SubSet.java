@@ -1,3 +1,5 @@
+package formula;
+
 public class SubSet {
     static int[] arr = { 10, 20, 3, 4 };
     // 부분집합의 길이

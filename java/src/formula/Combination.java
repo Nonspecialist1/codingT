@@ -1,3 +1,5 @@
+package formula;
+
 public class Combination {
     static int[] arr = { 1, 2, 3, 4 };
     // nCr 조합
