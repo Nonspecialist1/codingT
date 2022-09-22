@@ -1,4 +1,4 @@
-package beckjoon.dp;
+package beckjoon.dp.sum123;
 
 import java.util.Scanner;
 

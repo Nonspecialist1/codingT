@@ -1,8 +1,8 @@
-package beckjoon.dp;
+package beckjoon.dp.sum123;
 
 import java.util.Scanner;
 
-public class SUM123 {
+public class SUM123_15988 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
