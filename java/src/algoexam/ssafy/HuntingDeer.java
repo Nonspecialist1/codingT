@@ -1,4 +1,4 @@
-package algoexam;
+package algoexam.ssafy;
 
 import java.util.*;
 
