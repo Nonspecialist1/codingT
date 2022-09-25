@@ -1,11 +1,11 @@
-package beckjoon.dp;
+package beckjoon.dp.longsequence;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class LongSequence_11053 {
+public class LongPlusSequence_11053 {
     static int[] NUMS;
     static int[] DP;
     static int N;
