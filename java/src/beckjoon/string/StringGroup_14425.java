@@ -1,4 +1,4 @@
-package beckjoon;
+package beckjoon.string;
 
 import java.io.IOException;
 import java.util.Scanner;
