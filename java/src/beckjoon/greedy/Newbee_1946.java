@@ -9,6 +9,7 @@ public class Newbee_1946 {
 
     static int T, N;
     static int[] Rank;
+    static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -26,12 +27,12 @@ public class Newbee_1946 {
 
                 Rank[fir] = sec;
             }
-
-            System.out.println(getMax());
+            getMax();
         }
+        System.out.println(sb);
     }
 
-    private static int getMax(){
+    private static void getMax(){
         int max = 1;
         int sec = Rank[1];
 
@@ -42,7 +43,7 @@ public class Newbee_1946 {
             }
         }
 
-        return max;
+        sb.append(max + "\n");
     }
 
 }
