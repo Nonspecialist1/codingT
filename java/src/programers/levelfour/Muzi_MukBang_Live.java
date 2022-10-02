@@ -1,4 +1,4 @@
-package programers.kakao;
+package programers.levelfour;
 
 import java.util.*;
 
@@ -15,14 +15,6 @@ public class Muzi_MukBang_Live {
         @Override
         public int compareTo(Food o) {
             return this.time - o.time;
-        }
-
-        @Override
-        public String toString() {
-            return "Food{" +
-                    "idx=" + idx +
-                    ", time=" + time +
-                    '}';
         }
     }
 
