@@ -17,7 +17,7 @@ public class Snake_3190 {
         }
     }
 
-    static int N, Idx = 0, Sec = 0;
+    static int N;
     // 오른쪽 - 아래 - 왼쪽 - 위쪽
     // D는 +1, L은 -1
     static int[] dx = {0, 1, 0, -1};
@@ -59,6 +59,8 @@ public class Snake_3190 {
     private static int solve(){
         int x = 1;
         int y = 1;
+        int Sec = 0;
+        int Idx = 0;
 
         while(true){
             Sec++;
@@ -79,12 +81,10 @@ public class Snake_3190 {
 
             // 방향 이동이 필요한 경우
             if(Dir[Sec] == 'L'){
-                Idx--;
-                if(Idx == -1) Idx = 3;
+                Idx = (Idx + 3) % 4;
             }
             else if(Dir[Sec] == 'D') {
-                Idx++;
-                if (Idx == 4) Idx = 0;
+                Idx = (Idx + 1) % 4;
             }
             // 이전 위치 기억
             x = newX; y = newY;
